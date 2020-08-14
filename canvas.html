@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Canvas</title>
+	<style type="text/css">
+		canvas{
+			background-color: gray;
+		}
+	</style>
+</head>
+<body>
+	<img id="cosa" src="23.png" style="display:none;">
+	<canvas id="canvas" width="400" height="300"></canvas>
+	<script type="text/javascript">
+		window.onload = function(){
+			var canvas = document.getElementById('canvas');
+			var contexto = canvas.getContext('2d');
+			
+			/*//rectangulo	
+			contexto.fillStyle = 'red';
+			contexto.fillRect(10, 10, 100, 100);
+
+			contexto.fillStyle = 'rgba(0, 0, 200, .5)';
+			contexto.fillRect(50, 50, 100, 100);
+
+			contexto.strokeStyle = 'rgba(0, 200, 0)';
+			contexto.strokeRect(90, 90, 100, 100);
+			
+			//linea
+			contexto.moveTo(0, 0);
+			contexto.lineTo(400,300);
+			contexto.stroke();
+			
+			
+			//circular
+			contexto.beginPath();
+			contexto.arc(95, 50, 40, 0, 2 * Math.PI);
+			contexto.stroke();
+			
+
+			//texto
+			contexto.font = "30px Arial "
+			contexto.strokeText("HELLO WORLD", 10, 50);
+			
+			//gradiant linear
+			var grd = contexto.createLinearGradient(0, 0, 200, 0);
+			grd.addColorStop(0, "red");
+			grd.addColorStop(1, "white");
+			contexto.fillStyle = grd;
+			contexto.fillRect(10, 10, 200, 100);
+			
+			//gradiant circular
+			var grd = contexto.createRadialGradient(75, 50, 5, 90, 60, 100);
+			grd.addColorStop(0, "red");
+			grd.addColorStop(1, "white");
+			contexto.fillStyle = grd;
+			contexto.fillRect(10, 10, 200, 100);
+			*/
+			//imagenes
+			var img = document.getElementById("cosa");
+			contexto.drawImage(img, 0, 0);
+		}
+		
+
+
+
+
+	</script>
+</body>
+	
+</html>
