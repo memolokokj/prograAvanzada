@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Canvas</title>
+	<style type="text/css">
+		canvas{
+			background-color: gray;
+		}
+	</style>
+</head>
+<body>
+	<img id="cosa" src="23.png" style="display:none;">
+	<h1>fecha arriba: se hace mas grueso el pincel</h1>
+	<h1>fecha abajo: se hace mas fino el pincel</h1>
+	<canvas id="canvas" width="400" height="300"></canvas>
+	<script type="text/javascript">
+		var isPressed;
+		var radio = 1;
+		window.onload = function(){
+			var canvas = document.getElementById('canvas');
+			var contexto = canvas.getContext('2d');
+			
+			canvas.addEventListener("mousemove",function(e)
+			{	
+				if(isPressed)
+				{
+					contexto.beginPath();
+					contexto.arc(e.offsetX, e.offsetY, radio, 0, 2 * Math.PI);
+					contexto.fill();
+				}
+			});
+			canvas.addEventListener("mousedown",function(e)
+			{	
+				isPressed = true;
+			});
+			canvas.addEventListener("mouseup",function(e)
+			{	
+				isPressed = false;
+			});
+		}
+
+		document.addEventListener('keydown', (e) => 
+		{
+		  const keyName = event.key;
+
+		  if(keyName == "ArrowUp")
+		  {
+		  	radio++;
+		  }
+		  else if(keyName == "ArrowDown")
+		  {
+		  	if(radio > 1)
+		  		radio--;
+		  }
+
+		});
+	</script>
+</body>
+	
+</html>
