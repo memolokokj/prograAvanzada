@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>avatar</title>
+	<style type="text/css">
+		body{
+			background-color: black;
+		}
+		canvas{
+			background-color: gray;
+		}
+		#centro{
+			margin-left: 500px;
+			margin-top: 100px;
+			border: solid white;
+			width: 550px;
+			height: 450px;
+		}
+	</style>
+</head>
+<body>
+	<div id="centro">
+		<canvas id="canvas" width="550" height="450"></canvas>
+		<script type="text/javascript">
+			window.onload = function()
+			{
+				var canvas = document.getElementById('canvas');
+				var ctx = canvas.getContext('2d');
+
+				//brazo izquierdo
+				ctx.beginPath();
+				ctx.fillStyle = 'rgb(253, 221, 202)';
+				ctx.moveTo(330, 290);
+				ctx.lineTo(331, 390);
+				ctx.lineTo(301, 450);
+				ctx.lineTo(331, 450);
+				ctx.lineTo(361, 390);
+				ctx.lineTo(370, 290);
+				ctx.stroke();
+				ctx.fill();
+
+				//almohada
+				ctx.beginPath();
+				ctx.fillStyle = 'orange';
+				ctx.moveTo(100, 450);
+				ctx.lineTo(300, 450);
+				ctx.lineTo(360, 330);
+				ctx.lineTo(160, 300);
+				ctx.fill();
+
+				//camiseta
+				ctx.beginPath();
+				ctx.fillStyle = 'blue';
+				ctx.moveTo(110, 320);
+				ctx.lineTo(160, 320);
+				ctx.lineTo(170, 300);
+				ctx.lineTo(320, 323);
+				ctx.lineTo(330, 290);
+				ctx.lineTo(370, 295);
+				ctx.lineTo(370, 220);
+				ctx.lineTo(360, 210);
+				ctx.lineTo(350, 200);
+				ctx.lineTo(300, 200);
+				ctx.arc(300-40, 200, 40, 0, Math.PI);
+				ctx.lineTo(170, 200);
+				ctx.lineTo(160, 210);
+				ctx.lineTo(150, 220);
+				ctx.lineTo(110, 320);
+				ctx.stroke();
+				ctx.fill();
+
+				//brazo derecho
+				ctx.beginPath();
+				ctx.fillStyle = 'rgb(253, 221, 202)';
+				ctx.moveTo(112, 321);
+				ctx.lineTo(158, 321);
+				ctx.lineTo(150, 380);
+				ctx.lineTo(250, 450);
+				ctx.lineTo(210, 450);
+				ctx.lineTo(120, 390);
+				ctx.lineTo(112, 321);
+				ctx.stroke();
+				ctx.fill();
+
+				//cuello
+				ctx.beginPath();
+				ctx.fillStyle = 'rgb(253, 221, 202)';
+				ctx.arc(300-40, 200, 40, 0, Math.PI);
+				ctx.lineTo(300-40, 180);
+				ctx.fill();
+				ctx.stroke();
+
+				//cabeza
+				ctx.beginPath();
+				ctx.fillStyle = 'rgb(253, 221, 202)';
+				ctx.ellipse(300-40, 150, 45, 55, 0, 0, 2*Math.PI);
+				ctx.fill();
+				ctx.stroke();
+
+				//boca/naris
+				ctx.beginPath();
+				ctx.moveTo(255, 190);
+				ctx.lineTo(275, 190);
+				ctx.stroke();
+
+				ctx.beginPath();
+				ctx.moveTo(265, 160);
+				ctx.lineTo(270, 170);
+				ctx.lineTo(265, 170);
+				ctx.stroke();
+
+				//bigote
+				ctx.beginPath();
+				ctx.fillStyle = 'black';
+				ctx.ellipse(250, 180, 14, 3, 0, 0, 2*Math.PI);
+				ctx.ellipse(280, 180, 14, 3, 0, 0, 2*Math.PI);
+				ctx.fill();
+				ctx.stroke();
+
+				//ojos
+				ctx.beginPath();
+				ctx.fillStyle = 'white';
+				ctx.ellipse(250, 150, 11, 5, 0, 0, 2*Math.PI);
+				ctx.fill();
+				ctx.stroke();
+				ctx.beginPath();
+				ctx.fillStyle = 'rgb(128, 64, 0)';
+				ctx.arc(250, 150, 3, 0, 2*Math.PI);
+				ctx.fill();
+				ctx.stroke();
+				ctx.beginPath();
+				ctx.fillStyle = 'white';
+				ctx.ellipse(280, 150, 11, 5, 0, 0, 2*Math.PI);
+				ctx.fill();
+				ctx.stroke();
+				ctx.beginPath();
+				ctx.fillStyle = 'rgb(128, 64, 0)';
+				ctx.arc(280, 150, 3, 0, 2*Math.PI);
+				ctx.fill();
+				ctx.stroke();
+
+				//lentes
+				ctx.beginPath();
+				ctx.rect(267, 145, 25, 10);
+				ctx.rect(237, 145, 25, 10);
+				ctx.stroke();
+
+				//sombrero
+				ctx.beginPath();
+				ctx.fillStyle = 'rgb(255, 191, 0)';
+				ctx.ellipse(265, 110, 100, 30, 0, 0, 2*Math.PI);
+				ctx.fill();
+				ctx.stroke();
+				ctx.beginPath();
+				ctx.fillStyle = 'rgb(255, 191, 0)';
+				ctx.ellipse(265, 110, 40, 90, 110, 0, Math.PI);
+				ctx.fill();
+				ctx.stroke();
+
+				//dialogo
+				ctx.beginPath();
+				ctx.fillStyle = 'white';
+				ctx.ellipse(465, 80, 90, 50, 0, 0, 2*Math.PI);
+				ctx.fill();
+				ctx.stroke();
+
+				ctx.font = "20px Arial "
+				ctx.strokeText("La vida es dolor", 400, 86);
+
+
+
+			}
+		</script>
+	</div>
+</body>
+	
+</html>

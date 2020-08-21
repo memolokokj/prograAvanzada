@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>casita</title>
+	<style type="text/css">
+		body{
+			background-color: black;
+		}
+		canvas{
+			background-color: gray;
+		}
+		#centro{
+			margin-left: 500px;
+			margin-top: 100px;
+			border: solid white;
+			width: 550px;
+			height: 450px;
+		}
+	</style>
+</head>
+<body>
+	<div id="centro">
+		<canvas id="canvas" width="550" height="450"></canvas>
+		<script type="text/javascript">
+			window.onload = function()
+			{
+				var canvas = document.getElementById('canvas');
+				var ctx = canvas.getContext('2d');
+
+				//fondo
+				var grd = ctx.createLinearGradient(0, 0, 0, 300);
+				grd.addColorStop(1, "yellow");
+				grd.addColorStop(0.5, "red");
+				grd.addColorStop(0, "blue");
+				ctx.fillStyle = grd;
+				ctx.fillRect(0, 0, 550, 350);
+
+				//sol
+				ctx.beginPath();
+				ctx.fillStyle = 'rgb(251, 163, 26)';
+				ctx.arc(280, 400, 150, 0, 2*Math.PI);
+				ctx.fill();
+				ctx.stroke();
+				
+				ctx.fillStyle = 'green';
+				ctx.fillRect(0, 350, 550, 100);
+
+				ctx.fillStyle = 'rgb(87, 35, 100)';
+				ctx.fillRect(340, 210, 200, 170);
+				ctx.fillStyle = 'gray';
+				ctx.fillRect(390, 300, 50, 80);
+				ctx.fillStyle = 'cyan';
+				ctx.fillRect(460, 250, 50, 50);
+
+
+				ctx.fillStyle = 'rgb(94, 10, 1)';
+				ctx.fillRect(50, 300, 40, 80);
+
+				ctx.beginPath();
+				ctx.fillStyle = 'rgb(0, 255, 0)';
+				ctx.arc(70, 300, 45, 0, 2*Math.PI);
+				ctx.arc(70, 260, 40, 0, 2*Math.PI);
+				ctx.arc(70, 220, 35, 0, 2*Math.PI);
+				ctx.fill();
+				
+			}
+		</script>
+	</div>
+</body>
+	
+</html>
