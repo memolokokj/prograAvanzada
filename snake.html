@@ -14,6 +14,7 @@
 	<script type="text/javascript">
 		var canvas = null, ctx = null, x=0, y=0, direccion = 0;
 		var player = null, food = null, score = null, puntaje = 0;
+		var pausa = false;
 
 		window.requestAnimationFrame = (function()
 		{
@@ -74,7 +75,12 @@
 		{
 			ctx.fillStyle = "#000";
 			ctx.fillRect(0,0,canvas.width,canvas.height);
-
+			if(pausa)
+			{
+				ctx.fillStyle = "#00FF00";
+				ctx.font = "15px Arial";
+				ctx.fillText("Juego pausado ESPACIO para continuar", 60, canvas.height-5);
+			}
 			player.paint(ctx); 
 			food.paint(ctx);
 			score.paint(ctx);
@@ -82,34 +88,37 @@
 
 		function upt()
 		{
-			switch(direccion)
+			if(!pausa)
 			{
-				case 0:
-					player.x += 2;
-					if(player.x>canvas.width)
-					 	player.x = -10;
-				break;
-				case 1:
-					player.x -= 2;
-					if (player.x<0)
-						player.x = canvas.width;
-				break;
-				case 2:
-					player.y += 2;
-					if(player.y>=canvas.height)
-					 	player.y = -10;
-				break;
-				case 3:
-					player.y -=2;
-					if(player.y<0)
-					 	player.y = canvas.height;
-				break;
-			}
+				switch(direccion)
+				{
+					case 0:
+						player.x += 2;
+						if(player.x>canvas.width)
+						 	player.x = -10;
+					break;
+					case 1:
+						player.x -= 2;
+						if (player.x<0)
+							player.x = canvas.width;
+					break;
+					case 2:
+						player.y += 2;
+						if(player.y>=canvas.height)
+						 	player.y = -10;
+					break;
+					case 3:
+						player.y -=2;
+						if(player.y<0)
+						 	player.y = canvas.height;
+					break;
+				}
 
-			if (player.intersects(food)) 
-			{
-				food.x = random(canvas.width-10);
-				food.y = random(canvas.height-10);
+				if (player.intersects(food)) 
+				{
+					food.x = random(canvas.width-10);
+					food.y = random(canvas.height-10);
+				}
 			}
 		}
 
@@ -155,6 +164,12 @@
 		  {
 		  	direccion = 0;
 		  }
+
+		  if(keyName == " ")
+		  {
+		  	pausa = !pausa;
+		  }
+
 
 		});
 
