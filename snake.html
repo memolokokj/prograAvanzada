@@ -13,7 +13,7 @@
 	<script type="text/javascript">
 		var canvas = null, ctx = null, x=0, y=0, direccion = 0;
 		var player = null, food = null, score = null, puntaje = 0;
-		var pausa = false, walls = Array();
+		var pausa = false, walls = Array(), over = false;
 
 		window.requestAnimationFrame = (function()
 		{
@@ -47,7 +47,8 @@
 					this.y < target.y + target.h  &&
 					this.y + this.h > target.y)
 				{
-					puntaje++;
+					if(target.c != "cyan")
+						puntaje++;
 					score = new Score(338, 20, puntaje);
 					return true;
 				}
@@ -80,6 +81,13 @@
 				ctx.font = "15px Arial";
 				ctx.fillText("Juego pausado ESPACIO para continuar", 60, canvas.height-5);
 			}
+			if(over)
+			{
+				ctx.fillStyle = "#00FF00";
+				ctx.font = "15px Arial";
+				ctx.fillText("Game Over", 150, canvas.height-5);
+				setTimeout("location.reload()",3000);
+			}
 			player.paint(ctx); 
 			food.paint(ctx);
 			score.paint(ctx);
@@ -93,41 +101,44 @@
 		{
 			if(!pausa)
 			{
-				switch(direccion)
+				if(!over)
 				{
-					case 0:
-						player.x += 2;
-						if(player.x>canvas.width)
-						 	player.x = -10;
-					break;
-					case 1:
-						player.x -= 2;
-						if (player.x<0)
-							player.x = canvas.width;
-					break;
-					case 2:
-						player.y += 2;
-						if(player.y>=canvas.height)
-						 	player.y = -10;
-					break;
-					case 3:
-						player.y -=2;
-						if(player.y<0)
-						 	player.y = canvas.height;
-					break;
-				}
-
-				if (player.intersects(food)) 
-				{
-					food.x = random(canvas.width-10);
-					food.y = random(canvas.height-10);
-				}
-
-				for(var i = 0; i <walls.length;i++)
-				{
-					if (player.intersects(walls[i])) 
+					switch(direccion)
 					{
-						console.log("perdiste");
+						case 0:
+							player.x += 2;
+							if(player.x>canvas.width)
+							 	player.x = -10;
+						break;
+						case 1:
+							player.x -= 2;
+							if (player.x<0)
+								player.x = canvas.width;
+						break;
+						case 2:
+							player.y += 2;
+							if(player.y>=canvas.height)
+							 	player.y = -10;
+						break;
+						case 3:
+							player.y -=2;
+							if(player.y<0)
+							 	player.y = canvas.height;
+						break;
+					}
+
+					if (player.intersects(food)) 
+					{
+						food.x = random(canvas.width-10);
+						food.y = random(canvas.height-10);
+					}
+
+					for(var i = 0; i <walls.length;i++)
+					{
+						if (player.intersects(walls[i])) 
+						{
+							over = true;
+						}
 					}
 				}
 			}
@@ -145,7 +156,8 @@
 		{
 			canvas = document.getElementById('canvas');
 			ctx = canvas.getContext('2d');
-
+			over = false;
+			puntaje = 0;
 			player = new Rectangulo(x,y,10,10,"#00FF00")
 			food = new Rectangulo((canvas.width/2-10),(canvas.height/2-10),10,10,"red")
 			score = new Score(338, 20, puntaje);
@@ -180,11 +192,10 @@
 		  	direccion = 0;
 		  }
 
-		  if(keyName == " ")
+		  if(keyName == " " && !over)
 		  {
 		  	pausa = !pausa;
 		  }
-
 
 		});
 
