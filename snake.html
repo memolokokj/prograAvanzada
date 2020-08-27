@@ -9,12 +9,11 @@
 	</style>
 </head>
 <body>
-	<img id="cosa" src="23.png" style="display:none;">
 	<canvas id="canvas" width="400" height="300"></canvas>
 	<script type="text/javascript">
 		var canvas = null, ctx = null, x=0, y=0, direccion = 0;
 		var player = null, food = null, score = null, puntaje = 0;
-		var pausa = false;
+		var pausa = false, walls = Array();
 
 		window.requestAnimationFrame = (function()
 		{
@@ -84,6 +83,10 @@
 			player.paint(ctx); 
 			food.paint(ctx);
 			score.paint(ctx);
+			for(var i = 0; i <walls.length;i++)
+			{
+				walls[i].paint(ctx);
+			}
 		}
 
 		function upt()
@@ -119,6 +122,14 @@
 					food.x = random(canvas.width-10);
 					food.y = random(canvas.height-10);
 				}
+
+				for(var i = 0; i <walls.length;i++)
+				{
+					if (player.intersects(walls[i])) 
+					{
+						console.log("perdiste");
+					}
+				}
 			}
 		}
 
@@ -138,6 +149,10 @@
 			player = new Rectangulo(x,y,10,10,"#00FF00")
 			food = new Rectangulo((canvas.width/2-10),(canvas.height/2-10),10,10,"red")
 			score = new Score(338, 20, puntaje);
+			walls.push(new Rectangulo(100,100,10,10,"cyan"));
+			walls.push(new Rectangulo(100,200,10,10,"cyan"));
+			walls.push(new Rectangulo(200,100,10,10,"cyan"));
+			walls.push(new Rectangulo(200,200,10,10,"cyan"));
 
 			run();
 		}
