@@ -15,6 +15,7 @@
 		var player = null, food = null, score = null, puntaje = 0;
 		var pausa = false, walls = Array(), over = false;
 		var playe_body = new Image(), food_img = new Image();
+		var crunch = new Audio(), muerte = new Audio(), stop = new Audio();
 
 		window.requestAnimationFrame = (function()
 		{
@@ -49,7 +50,10 @@
 					this.y + this.h > target.y)
 				{
 					if(target.c != "cyan")
+					{
 						puntaje++;
+						crunch.play();
+					}
 					score = new Score(338, 20, puntaje);
 					return true;
 				}
@@ -88,6 +92,7 @@
 				ctx.font = "15px Arial";
 				ctx.fillText("Game Over", 150, canvas.height-5);
 				setTimeout("location.reload()",3000);
+				muerte.play();
 			}
 			//player.paint(ctx); 
 			//food.paint(ctx);
@@ -167,6 +172,9 @@
 
 			playe_body.src = "player.png"
 			food_img.src = "food.png"
+			crunch.src = "crunch.mp3";
+			muerte.src = "muerte.mp3";
+			stop.src = "stop.wav"; 
 
 			walls.push(new Rectangulo(100,100,10,10,"cyan"));
 			walls.push(new Rectangulo(100,200,10,10,"cyan"));
@@ -202,6 +210,7 @@
 		  if(keyName == " " && !over)
 		  {
 		  	pausa = !pausa;
+		  	stop.play();
 		  }
 
 		});
