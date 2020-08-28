@@ -14,6 +14,7 @@
 		var canvas = null, ctx = null, x=0, y=0, direccion = 0;
 		var player = null, food = null, score = null, puntaje = 0;
 		var pausa = false, walls = Array(), over = false;
+		var playe_body = new Image(), food_img = new Image();
 
 		window.requestAnimationFrame = (function()
 		{
@@ -88,8 +89,10 @@
 				ctx.fillText("Game Over", 150, canvas.height-5);
 				setTimeout("location.reload()",3000);
 			}
-			player.paint(ctx); 
-			food.paint(ctx);
+			//player.paint(ctx); 
+			//food.paint(ctx);
+			ctx.drawImage(playe_body, player.x, player.y);
+			ctx.drawImage(food_img, food.x, food.y);
 			score.paint(ctx);
 			for(var i = 0; i <walls.length;i++)
 			{
@@ -161,6 +164,10 @@
 			player = new Rectangulo(x,y,10,10,"#00FF00")
 			food = new Rectangulo((canvas.width/2-10),(canvas.height/2-10),10,10,"red")
 			score = new Score(338, 20, puntaje);
+
+			playe_body.src = "player.png"
+			food_img.src = "food.png"
+
 			walls.push(new Rectangulo(100,100,10,10,"cyan"));
 			walls.push(new Rectangulo(100,200,10,10,"cyan"));
 			walls.push(new Rectangulo(200,100,10,10,"cyan"));
