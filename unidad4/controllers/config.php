@@ -7,6 +7,12 @@
 		session_start();
 	}
 
+	if (!isset($_SESSION["token"]))
+	{
+		$_SESSION["token"] = md5(uniqid(mt_rand(),true));
+	}
+
+
 	if (!defined("BASE_PATH"))
 	{
 		defined("BASE_PATH");

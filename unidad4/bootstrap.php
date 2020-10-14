@@ -114,7 +114,7 @@
 								      <a class="dropdown-item" href="#" data-info='<?= json_encode($user) ?>' onclick="edit(this)" data-toggle="modal" data-target="#exampleModal">Update</a>
 								      <a class="dropdown-item" href="#" onclick="sure(<?= $user["idUser"]?>)">Delete</a>
 								    </div>
-								  </div>
+								</div>
 						      </td>
 						    </tr>
 					    <?php endforeach ?>
@@ -194,7 +194,7 @@
 	        </button>
 	      </div>
 	      <div class="modal-body">
-	        <form action="controllers/UserController.php" method="POST" onsubmit="return validateForm()">
+	        <form action="user" method="POST" onsubmit="return validateForm()">
 	        	<div class="form-group">
 			    <label for="exampleInputEmail1">Name</label>
 			    <input type="text" class="form-control" name="name" id="name"  placeholder="Enter name" required>
@@ -218,6 +218,7 @@
 			  <button type="submit" class="btn btn-primary">Submit</button>
 			  <input type="hidden" id="action" name="action" value="store">
 			  <input type="hidden" id="user_id" name="id">
+			  <input type="hidden" name="token" value="<?= $_SESSION['token'] ?>">
 			</form>
 	      </div>
 	      <div class="modal-footer">
@@ -290,8 +291,8 @@
 			    });
 
 			    $.ajax({
-			    	url: "controllers/UserController.php",
-			    	data: {id: id, action: "remove"},
+			    	url: "user",
+			    	data: {id: id, action: "remove", token: <?= $_SESSION['token']?>},
 			    	type: "POST",
 			    	dataType: "json",
 			    	success : function(json){
